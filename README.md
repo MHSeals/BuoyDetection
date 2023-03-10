@@ -3,6 +3,7 @@ Buoy detection in Rust
 Designed for Intel Realsense D435 depth camera  
 Buoys found using size of color patches on rgb, and getting depth, and using inverse square law  
 Uses the Rust realsense libraries (`realsense-rust`, `realsense-sys`)  
+Communicates with Python scripts that control movement through port 8080
 
 # Build
 To build, you need to install librealsense  
