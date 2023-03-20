@@ -15,6 +15,9 @@ For Arch:
 yay -S librealsense
 # Clone repo
 git clone https://github.com/MHSeals/BuoyDetection
-# Build the package for release
-cargo build --release
+# Build the package for release & install
+chmod +x install
+./install
+# To run:
+sudo systemctl start buoydetect
 ```

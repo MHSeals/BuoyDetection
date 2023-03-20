@@ -1,0 +1,8 @@
+[Unit]
+Description = Rust Buoy detection
+
+[Service]
+ExecStart=/bin/image-recog
+
+[Install]
+WantedBy=multi-user.target

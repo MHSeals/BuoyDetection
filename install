@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "Building"
+cargo build --release
+
+echo "Copying"
+sudo cp ./target/release/image-recog /bin/
+sudo cp ./buoydetect.service /usr/lib/systemd/system/
