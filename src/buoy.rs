@@ -121,8 +121,8 @@ impl AllBuoy{
     }
 }
 
-const BUOY_MIN: usize = 80000;
-const BUOY_MAX: usize = 100000;
+const BUOY_MIN: usize = 130000;
+const BUOY_MAX: usize = 150000;
 
 pub fn find_buoys(process: &ImageProcess, capture: &Capture) -> AllBuoy {
     let mut buoy_list: AllBuoy = AllBuoy::new();
@@ -158,7 +158,10 @@ pub fn find_buoys(process: &ImageProcess, capture: &Capture) -> AllBuoy {
     for ele in pixel_vec{
         let size: usize = ele.len();
         let coord: (usize, usize) = ele[2];
-        let dist: f32 = capture.get_depth(coord.0, coord.1);
+        let mut dist: f32 = capture.get_depth(coord.0, coord.1);
+        if dist == 0.0{
+            dist = capture.get_depth(ele[100].0, ele[100].1);
+        }
         let multiplier: f32 =  dist * dist;
         let buoy_factor = (size as f32 * multiplier) as usize;
         if buoy_factor >= BUOY_MIN && buoy_factor <= BUOY_MAX{

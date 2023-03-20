@@ -11,7 +11,6 @@ pub enum Color {
     GRAY,
     WHITE,
     BLACK,
-    PINK,
 }
 
 #[derive(Clone)]
@@ -56,28 +55,18 @@ fn get_pixel_color(r: u8, g: u8, b: u8) -> Color {
     let r: u16 = r as u16;
     let g: u16 = g as u16;
     let b: u16 = b as u16;
-    let brightness: u16 = (r / 3) + (g / 3) + (b / 3);
-    let color: Color;
-    if r > (g + b) && (g + b) < 100 {
-        color = Color::RED
-    } else if r > (b + 20) && r > (g + 20) {
-        color = Color::PINK;
-    } else if g > (r + b) && (g + b) < 100 {
-        color = Color::GREEN;
-    } else if b > (r + g) && (g + b) < 100 {
-        color = Color::BLUE;
-    } else if r >= 200 && g >= 200 && b <= 50 {
-        color = Color::YELLOW;
-    } else if r >= 200 && g <= 50 && b >= 200 {
-        color = Color::PURPLE;
-    } else if r <= 50 && g >= 200 && b >= 200 {
-        color = Color::TEAL;
-    } else if brightness >= 230 {
-        color = Color::WHITE;
-    } else if brightness <= 25 {
-        color = Color::BLACK;
-    } else {
-        color = Color::GRAY;
-    }
+    let color: Color =  if r < 40 && g < 40 && b < 40{
+        Color::BLACK
+    } else if r > 240 && g > 240 && b > 240{
+        Color::WHITE
+    } else if r >= 50 && (2 * r / 3) >= g && (2 * r / 3) >= b{
+        Color::RED
+    } else if g >= 50 && g > b && (2 * g / 3) >= r{
+        Color::GREEN
+    } else if b >= 50 && (2 * b / 3) >= g && (2 * b / 3) >= r{
+        Color::BLUE
+    } else{
+        Color::GRAY
+    };
     return color;
 }
