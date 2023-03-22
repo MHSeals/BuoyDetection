@@ -165,14 +165,14 @@ pub fn find_buoys(process: &ImageProcess, capture: &Capture) -> AllBuoy {
         let multiplier: f32 =  dist * dist;
         let buoy_factor = (size as f32 * multiplier) as usize;
         if buoy_factor >= BUOY_MIN && buoy_factor <= BUOY_MAX{
-            let mut buoy_color: BuoyColor = BuoyColor::UNDEFINED;
-            if image[coord.0][coord.1] == Color::RED{
-                buoy_color = BuoyColor::RED;
-            }
-            else if image[coord.0][coord.1] == Color::GREEN{
-                buoy_color = BuoyColor::GREEN;
-            }
-            if buoy_color !=BuoyColor::UNDEFINED{
+            let buoy_color: BuoyColor = if image[coord.0][coord.1] == Color::RED{
+                BuoyColor::RED
+            } else if image[coord.0][coord.1] == Color::GREEN{
+                BuoyColor::GREEN
+            } else {
+                BuoyColor::UNDEFINED
+            };
+            if buoy_color != BuoyColor::UNDEFINED{
                 buoy_list.add(Buoy::new(buoy_color, Size::TALL, coord, dist));
             }
         }

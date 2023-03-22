@@ -10,8 +10,7 @@ use realsense_rust::{
 use std::{
     collections::HashSet,
     ffi::CStr,
-    process,
-    sync::mpsc::{self, Receiver, Sender, SyncSender},
+    sync::mpsc::{self, Receiver, SyncSender},
     thread::{self, sleep, JoinHandle},
     time::Duration,
 };
