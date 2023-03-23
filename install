@@ -6,3 +6,7 @@ cargo build --release
 echo "Copying"
 sudo cp ./target/release/image-recog /bin/
 sudo cp ./buoydetect.service /usr/lib/systemd/system/
+
+echo "Creating logfile"
+sudo touch /log
+sudo chmod 666 /log

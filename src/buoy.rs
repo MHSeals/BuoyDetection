@@ -1,7 +1,6 @@
 use crate::capture::Capture;
 use crate::process::Color;
 use crate::process::ImageProcess;
-use std::collections::HashSet;
 use std::collections::HashMap;
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
@@ -131,7 +130,6 @@ pub fn find_buoys(process: &ImageProcess, capture: &Capture) -> AllBuoy {
     let image = process.get_matrix();
     for i in 0..image.len(){
         for j in 0..image[i].len(){
-            let mut found = false;
             if i >= 1 && pixel_hm.contains_key(&(i - 1, j)) && image[i - 1][j] == image[i][j]{
                 pixel_vec[*pixel_hm.get(&(i - 1, j)).unwrap()].push((i, j));
                 pixel_hm.insert((i, j), *pixel_hm.get(&(i - 1, j)).unwrap());

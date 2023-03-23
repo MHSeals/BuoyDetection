@@ -41,7 +41,7 @@ impl WebServer {
 
 fn handle_connection(mut stream: TcpStream, message: String) {
     let buf_reader = BufReader::new(&mut stream);
-    let http_request: Vec<_> = buf_reader
+    let _http_request: Vec<_> = buf_reader
         .lines()
         .map(|result| result.unwrap())
         .take_while(|line| !line.is_empty())
