@@ -1,6 +1,7 @@
 use crate::capture::Capture;
 use crate::process::Color;
 use crate::process::ImageProcess;
+use crate::log;
 use std::collections::HashMap;
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
@@ -118,6 +119,9 @@ impl AllBuoy{
         }
         return closest_green;
     }
+    pub fn get_len(&self) -> usize{
+        return self.size;
+    }
 }
 
 const BUOY_MIN: usize = 130000;
@@ -174,6 +178,7 @@ pub fn find_buoys(process: &ImageProcess, capture: &Capture) -> AllBuoy {
                 buoy_list.add(Buoy::new(buoy_color, Size::TALL, coord, dist));
             }
         }
+        log::log(format!("{:?}, {}", image[coord.0][coord.1], buoy_factor).as_str());
     }
     return buoy_list;
 }

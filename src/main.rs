@@ -11,10 +11,11 @@ fn main() {
     let processed = process::ImageProcess::new(image_cap);
     let server = server::WebServer::new();
     loop {
+        log::time_log("");
         let buoys: buoy::AllBuoy = buoy::find_buoys(&processed, &capture);
         let heading = buoys.get_heading();
         let send_text: String = format::format(buoys, heading);
-        log::time_log(&format!("{}", send_text.clone()));
+        log::log(&format!("{}", send_text.clone()));
         server.send_message(format!("{send_text}"));
     }
 }
